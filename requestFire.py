@@ -2,7 +2,13 @@ from joblib import PrintTime
 import verificaDados
 import requests as rest
 import json
-linkBD = "https://meuprojeto01-66f74-default-rtdb.firebaseio.com/"
+
+# A VARIAVEL linkBD RECEBE A URL DO BANCO DE DADOS FIRE BASE. 
+# (with open() as arq) FOI USADO PARA ESCONDER O LINK EM UM PASTA FORA DO ESCOPO DO PROJETO.
+with open("../Autentica/link_FB.txt", "r") as arq:
+    texto =arq.read()
+linkBD = texto
+print(linkBD)
 
 ##################################################
 # CONSUTAR DE EXISTE ID DE CADASTRO DE VENDA NO BANCO DE DADOS
