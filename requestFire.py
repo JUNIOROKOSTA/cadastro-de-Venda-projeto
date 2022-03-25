@@ -28,6 +28,15 @@ def consultCadastro(data):
         return "OK"
     else:
         return True
+
+
+def buscar_dados_id(n):
+    data = ""
+    return verificaDados.verifica(data,linkBD,n)
+    
+
+    
+
 ##################################################
 # 03)-> DELETAR CADASTRO DE VENDA NO BANCO DE DADOS
 def deletarVenda(data1):
