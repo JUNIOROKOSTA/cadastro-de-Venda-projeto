@@ -50,12 +50,11 @@ def deletarVenda(data1):
 ##################################################
 # 02)-> EDITAR CADASTRO DE VENDA NO BANCO DE DADOS
 def editaVendas(data1,Ndata):
-    if consultCadastro(data1) == "OK":
-        if data1['ID'] == Ndata['ID']:
-            idEdit = verificaDados.verifica(data1['cliente'],linkBD,data1['ID'])
-            rest.patch(f'{linkBD}/VENDAS/{idEdit}/.json', data=json.dumps(Ndata))
-            print('Operação de Edição realizada com secesso!!!')
-        else: print('IDs de registro diferentes!!!')
+    cliente = data1["cliente"]
+    ID = data1["ID"]
+    idEdit= verificaDados.verifica(cliente, linkBD,ID)
+    rest.patch(f'{linkBD}/VENDAS/{idEdit}/.json', data=json.dumps(Ndata))
+
 
 ##################################################
 # 01)-> CRIAR CADASTRO DE VENDA NO BANCO DE DADOS

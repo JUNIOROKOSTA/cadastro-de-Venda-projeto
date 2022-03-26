@@ -152,10 +152,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.btn_cadastrar)
 
-        self.btn_editar = QPushButton(self.frame_d_btn)
-        self.btn_editar.setObjectName(u"btn_editar")
-        self.btn_editar.setMaximumSize(QSize(16777215, 50))
-        self.btn_editar.setStyleSheet(u"QPushButton{\n"
+        self.btn_conf_edit = QPushButton(self.frame_d_btn)
+        self.btn_conf_edit.setObjectName(u"btn_conf_edit")
+        self.btn_conf_edit.setMaximumSize(QSize(16777215, 50))
+        self.btn_conf_edit.setStyleSheet(u"QPushButton{\n"
 "	border-radius: 7px;\n"
 "	border: 1px solid rgb(30, 30, 30);\n"
 "	background-color: rgb(234, 234, 234);\n"
@@ -167,7 +167,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(244, 255, 244);\n"
 "}")
 
-        self.verticalLayout_2.addWidget(self.btn_editar)
+        self.verticalLayout_2.addWidget(self.btn_conf_edit)
 
         self.btn_excluir = QPushButton(self.frame_d_btn)
         self.btn_excluir.setObjectName(u"btn_excluir")
@@ -197,12 +197,50 @@ class Ui_MainWindow(object):
         self.frame_D_tabela.setStyleSheet(u"background-color: rgb(65, 65, 65);")
         self.frame_D_tabela.setFrameShape(QFrame.StyledPanel)
         self.frame_D_tabela.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_3 = QVBoxLayout(self.frame_D_tabela)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.horizontalLayout_6 = QHBoxLayout(self.frame_D_tabela)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.tabela = QTreeWidget(self.frame_D_tabela)
         self.tabela.setObjectName(u"tabela")
 
-        self.verticalLayout_3.addWidget(self.tabela)
+        self.horizontalLayout_6.addWidget(self.tabela)
+
+        self.frame = QFrame(self.frame_D_tabela)
+        self.frame.setObjectName(u"frame")
+        self.frame.setMinimumSize(QSize(120, 0))
+        self.frame.setStyleSheet(u"background-color: rgb(240, 240, 240);")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_3 = QVBoxLayout(self.frame)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.label = QLabel(self.frame)
+        self.label.setObjectName(u"label")
+        self.label.setMaximumSize(QSize(16777215, 50))
+        self.label.setLayoutDirection(Qt.RightToLeft)
+        self.label.setScaledContents(False)
+        self.label.setWordWrap(True)
+
+        self.verticalLayout_3.addWidget(self.label)
+
+        self.btn_editar = QPushButton(self.frame)
+        self.btn_editar.setObjectName(u"btn_editar")
+        self.btn_editar.setMinimumSize(QSize(100, 50))
+        self.btn_editar.setMaximumSize(QSize(100, 50))
+        self.btn_editar.setStyleSheet(u"QPushButton{\n"
+"	border-radius: 7px;\n"
+"	border: 1px solid rgb(30, 30, 30);\n"
+"	background-color: rgb(234, 234, 234);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	border-radius: 7px;\n"
+"	border: 1px solid rgb(60, 60, 60);\n"
+"	background-color: rgb(255, 244, 244);\n"
+"}")
+
+        self.verticalLayout_3.addWidget(self.btn_editar)
+
+
+        self.horizontalLayout_6.addWidget(self.frame)
 
 
         self.verticalLayout.addWidget(self.frame_D_tabela)
@@ -221,7 +259,8 @@ class Ui_MainWindow(object):
         self.label_preco.setText(QCoreApplication.translate("MainWindow", u"PRECO", None))
         self.label_produto.setText(QCoreApplication.translate("MainWindow", u"PRODUTO", None))
         self.btn_cadastrar.setText(QCoreApplication.translate("MainWindow", u"CADASTRA", None))
-        self.btn_editar.setText(QCoreApplication.translate("MainWindow", u"EDITA", None))
+        self.btn_conf_edit.setText(QCoreApplication.translate("MainWindow", u"CONFIRMA\n"
+"EDI\u00c7\u00c3O", None))
         self.btn_excluir.setText(QCoreApplication.translate("MainWindow", u"EXCLUIR", None))
         ___qtreewidgetitem = self.tabela.headerItem()
         ___qtreewidgetitem.setText(4, QCoreApplication.translate("MainWindow", u"ID_FB", None));
@@ -229,5 +268,7 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem.setText(2, QCoreApplication.translate("MainWindow", u"Preco", None));
         ___qtreewidgetitem.setText(1, QCoreApplication.translate("MainWindow", u"Cliente", None));
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"ID", None));
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Marque um item para Editar", None))
+        self.btn_editar.setText(QCoreApplication.translate("MainWindow", u"EDITAR", None))
     # retranslateUi
 

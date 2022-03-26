@@ -12,42 +12,50 @@ class MainWindow(QTW.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle('Tela de Vendas')
         # SOLICITAÇÃO DE DADOS DO FB <<<<<<<<<<<<<<<<<<<<<<
-        self.data_get ={}
-        self.data_fb = requestFire.getFB()
-        self.checked_items =[]
+        self.btn_cadastrar.clicked.connect(self.getData)
+        self.btn_editar.clicked.connect(self.editar_valor)
+        self.btn_conf_edit.clicked.connect(self.editar_cadastro)
+
+        self.checked_items = [""]
+
+        self.reset_table()
+        self.limpar_cadastro()
+
+    def limpar_cadastro(self):
+
         self.lineEdit_id.setText("")
         self.lineEdit_cliente.setText("")
         self.lineEdit_preco.setText("")
         self.lineEdit_produto.setText("")
-        
-        self.btn_cadastrar.clicked.connect(self.getData)
-        self.btn_editar.clicked.connect(self.charge_item)
-
-        self.reset_table()
 
     def charge_item(self):
-
+        self.checked_items = []
         def recurse(parent_item):
             for i in range(parent_item.childCount()):
                 child = parent_item.child(i)
                 grand_children = child.childCount()
                 if grand_children > 0:
                     recurse(child)
-                    print("1: ",child)
                 elif child.checkState(0) == PySide2.QtCore.Qt.Checked:
                     self.checked_items = (child.text(0))
                     self.checked_items = requestFire.buscar_dados_id(self.checked_items)
-                    
-
+        
         recurse(self.tabela.invisibleRootItem())
-        print(self.checked_items)
-        self.lineEdit_id.setText(str(self.checked_items["ID"]))
-        self.lineEdit_cliente.setText(str(self.checked_items["cliente"]))
-        self.lineEdit_preco.setText(str(self.checked_items["preco"]))
-        self.lineEdit_produto.setText(str(self.checked_items["produto"]))
-        self.checked_items = []
+        return self.checked_items
+    
+    def editar_valor(self):
+        items = self.charge_item()
+        self.lineEdit_id.setText(str(items["ID"]))
+        self.lineEdit_cliente.setText(str(items["cliente"]))
+        self.lineEdit_preco.setText(str(items["preco"]))
+        self.lineEdit_produto.setText(str(items["produto"]))
         self.reset_table()
 
+    def cadastra_dados(self):
+        data = self.getData()
+        requestFire.cadastraDados(data)
+        self.reset_table()
+        self.limpar_cadastro()
 
 
     def getData(self):
@@ -55,20 +63,7 @@ class MainWindow(QTW.QMainWindow, Ui_MainWindow):
         cliente = self.lineEdit_cliente.text()
         preco = self.lineEdit_preco.text()
         produto = self.lineEdit_produto.text()
-        self.data_get = {'ID':int(idd), 'cliente': cliente, 'preco':int(preco), 'produto':produto}
-        
-        print(self.data_get)
-
-        requestFire.cadastraDados(self.data_get)
-        
-
-        self.lineEdit_id.setText("")
-        self.lineEdit_cliente.setText("")
-        self.lineEdit_preco.setText("")
-        self.lineEdit_produto.setText("")
-        self.data_get ={}
-
-        self.reset_table()
+        return {'ID':int(idd), 'cliente': cliente, 'preco':int(preco), 'produto':produto}
     
     def reset_table(self):
         self.tabela.clear()
@@ -89,7 +84,13 @@ class MainWindow(QTW.QMainWindow, Ui_MainWindow):
             campo = QTW.QTreeWidgetItem(self.tabela, (str(idd),cliente,str(preco),produto,idfire))
             campo.setCheckState(0, PySide2.QtCore.Qt.CheckState.Unchecked)
             self.tabela.setSortingEnabled(True)
-   
+    
+    def editar_cadastro(self):
+        novo_data = self.getData()
+        requestFire.editaVendas(self.checked_items,novo_data)
+
+        self.limpar_cadastro()
+        self.reset_table()
 
 
 
