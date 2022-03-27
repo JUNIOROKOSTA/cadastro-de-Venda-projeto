@@ -29,14 +29,10 @@ def consultCadastro(data):
     else:
         return True
 
-
 def buscar_dados_id(n):
     data = ""
     return verificaDados.verifica(data,linkBD,n)
     
-
-    
-
 ##################################################
 # 03)-> DELETAR CADASTRO DE VENDA NO BANCO DE DADOS
 def deletarVenda(data1):
@@ -54,7 +50,6 @@ def editaVendas(data1,Ndata):
     ID = data1["ID"]
     idEdit= verificaDados.verifica(cliente, linkBD,ID)
     rest.patch(f'{linkBD}/VENDAS/{idEdit}/.json', data=json.dumps(Ndata))
-
 
 ##################################################
 # 01)-> CRIAR CADASTRO DE VENDA NO BANCO DE DADOS

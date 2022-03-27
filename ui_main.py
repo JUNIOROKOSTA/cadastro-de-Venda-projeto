@@ -169,23 +169,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.btn_conf_edit)
 
-        self.btn_excluir = QPushButton(self.frame_d_btn)
-        self.btn_excluir.setObjectName(u"btn_excluir")
-        self.btn_excluir.setMaximumSize(QSize(16777215, 50))
-        self.btn_excluir.setStyleSheet(u"QPushButton{\n"
-"	border-radius: 7px;\n"
-"	border: 1px solid rgb(30, 30, 30);\n"
-"	background-color: rgb(234, 234, 234);\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"	border-radius: 7px;\n"
-"	border: 1px solid rgb(60, 60, 60);\n"
-"	background-color: rgb(255, 244, 244);\n"
-"}")
-
-        self.verticalLayout_2.addWidget(self.btn_excluir)
-
 
         self.horizontalLayout.addWidget(self.frame_d_btn)
 
@@ -239,6 +222,39 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.btn_editar)
 
+        self.frame_2 = QFrame(self.frame)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_3.addWidget(self.frame_2)
+
+        self.label_2 = QLabel(self.frame)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setMaximumSize(QSize(16777215, 50))
+        self.label_2.setLayoutDirection(Qt.RightToLeft)
+        self.label_2.setScaledContents(False)
+        self.label_2.setWordWrap(True)
+
+        self.verticalLayout_3.addWidget(self.label_2)
+
+        self.btn_excluir = QPushButton(self.frame)
+        self.btn_excluir.setObjectName(u"btn_excluir")
+        self.btn_excluir.setMaximumSize(QSize(16777215, 50))
+        self.btn_excluir.setStyleSheet(u"QPushButton{\n"
+"	border-radius: 7px;\n"
+"	border: 1px solid rgb(30, 30, 30);\n"
+"	background-color: rgb(234, 234, 234);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	border-radius: 7px;\n"
+"	border: 1px solid rgb(60, 60, 60);\n"
+"	background-color: rgb(255, 244, 244);\n"
+"}")
+
+        self.verticalLayout_3.addWidget(self.btn_excluir)
+
 
         self.horizontalLayout_6.addWidget(self.frame)
 
@@ -261,7 +277,6 @@ class Ui_MainWindow(object):
         self.btn_cadastrar.setText(QCoreApplication.translate("MainWindow", u"CADASTRA", None))
         self.btn_conf_edit.setText(QCoreApplication.translate("MainWindow", u"CONFIRMA\n"
 "EDI\u00c7\u00c3O", None))
-        self.btn_excluir.setText(QCoreApplication.translate("MainWindow", u"EXCLUIR", None))
         ___qtreewidgetitem = self.tabela.headerItem()
         ___qtreewidgetitem.setText(4, QCoreApplication.translate("MainWindow", u"ID_FB", None));
         ___qtreewidgetitem.setText(3, QCoreApplication.translate("MainWindow", u"Produto", None));
@@ -270,5 +285,7 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"ID", None));
         self.label.setText(QCoreApplication.translate("MainWindow", u"Marque um item para Editar", None))
         self.btn_editar.setText(QCoreApplication.translate("MainWindow", u"EDITAR", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Excluir cadastro selecionado", None))
+        self.btn_excluir.setText(QCoreApplication.translate("MainWindow", u"EXCLUIR", None))
     # retranslateUi
 

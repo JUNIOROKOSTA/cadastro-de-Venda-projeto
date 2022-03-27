@@ -1,4 +1,5 @@
 
+from typing_extensions import Self
 from PySide2 import QtWidgets as QTW
 from ui_main import Ui_MainWindow
 import PySide2.QtCore
@@ -12,14 +13,14 @@ class MainWindow(QTW.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle('Tela de Vendas')
         # SOLICITAÇÃO DE DADOS DO FB <<<<<<<<<<<<<<<<<<<<<<
-        self.btn_cadastrar.clicked.connect(self.getData)
+        self.btn_cadastrar.clicked.connect(self.cadastra_dados)
         self.btn_editar.clicked.connect(self.editar_valor)
         self.btn_conf_edit.clicked.connect(self.editar_cadastro)
+        self.btn_excluir.clicked.connect(self.deletar_cadastro)
 
         self.checked_items = [""]
 
         self.reset_table()
-        self.limpar_cadastro()
 
     def limpar_cadastro(self):
 
@@ -54,6 +55,7 @@ class MainWindow(QTW.QMainWindow, Ui_MainWindow):
     def cadastra_dados(self):
         data = self.getData()
         requestFire.cadastraDados(data)
+
         self.reset_table()
         self.limpar_cadastro()
 
@@ -68,7 +70,6 @@ class MainWindow(QTW.QMainWindow, Ui_MainWindow):
     def reset_table(self):
         self.tabela.clear()
         self.table_vendas()
-    
     
     def table_vendas(self):
         self.tabela.setStyleSheet('background: white')
@@ -92,10 +93,13 @@ class MainWindow(QTW.QMainWindow, Ui_MainWindow):
         self.limpar_cadastro()
         self.reset_table()
 
+    def deletar_cadastro(self):
+        self.editar_valor()
+        dataDel = self.getData()
+        requestFire.deletarVenda(dataDel)
 
-
-
-
+        self.limpar_cadastro()
+        self.reset_table()
 
 
 if __name__ == "__main__":
@@ -103,30 +107,3 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
     app.exec_()
-
-
-##################################################
-# DADOS PARA TESTE
-# data = {'ID':4, 'cliente': 'Junior', 'preco':150, 'produto': 'Celular'}
-# Ndata = {'ID':2, 'cliente': 'Maria', 'preco':2050, 'produto': 'Celular'}
-##################################################
-
-# TESTE DE SOLICITAÇÕES:
-
-##################################################
-# 01)-> CRIAR CADASTRO DE VENDA NO BANCO DE DADOS
-
-# criar = requestFire.cadastraDados(data)
-# print(criar)
-
-##################################################
-# 02)-> EDITAR CADASTRO DE VENDA NO BANCO DE DADOS
-
-# editar = requestFire.editaVendas(data,Ndata)
-# print(editar)
-
-##################################################
-# 03)-> DELETAR CADASTRO DE VENDA NO BANCO DE DADOS
-
-# deletar = requestFire.deletarVenda(data)
-# print(deletar)
